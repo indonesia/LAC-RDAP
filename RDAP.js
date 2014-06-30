@@ -6,20 +6,25 @@ function getJson(data) {
      geojsonLayer.addData(data);
 
 	//Custom Marker Variables
-	var testIcon = L.icon({
-    	iconUrl: 'http://localhost/LAC/Icons/leaf-green.png',
-    	shadowUrl: 'http://localhost/LAC/Icons/leaf-shadow.png',
-
-    	iconSize:     [38, 95], // size of the icon
-    	shadowSize:   [50, 64], // size of the shadow
-    	iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    	shadowAnchor: [4, 62],  // the same for the shadow
-    	popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-
-	});
-
+	var myIcon = L.Icon.extend({
+		iconUrl: 'http://localhost/LAC/Icons/leaf-green.png',
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76]
+		
+        });
+	
+	L.geoJson(data, {
+	  pointToLayer: function (feature, latLng) {
+            return new L.Marker(latLng, {
+              icon: new myIcon({
+              iconUrl: 'http://localhost/LAC/Icons/leaf-green.png'
+              })
+            })
+          }
+        })
 //Add Custom Markers to map
-L.marker([xxxxxx], {icon: testIcon}).addTo(map);
+.addTo(map);
 
 };
 
