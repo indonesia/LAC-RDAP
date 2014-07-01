@@ -17,4 +17,3 @@ $.ajax({
 //Add Data to Map
 map.addLayer(geojsonLayer);
 
-
