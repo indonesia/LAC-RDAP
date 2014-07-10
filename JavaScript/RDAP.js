@@ -14,6 +14,17 @@ var markers = {
 //Defining Geo-Data Function
 function getJson(data) {
 
+	//Add Marker Cluster
+	var markers = new L.MarkerClusterGroup();
+
+    	for (var i = 0; i < 361; i++) {
+        	var a = data.features[i].properties;
+        	var marker = L.marker(new L.LatLng(a[0], a[1]), {
+			icon: markers
+        	});
+        markers.addLayer(marker);
+    	}
+
 	//Add Markers to Map
 	L.geoJson(data, {
     		pointToLayer: function (feature, latlng) {
@@ -29,15 +40,6 @@ function getJson(data) {
 	}
 	*/
 
-	//Add Marker Cluster
-	/*
-	var markers = new L.MarkerClusterGroup(data, { 
-     		maxClusterRadius: 100,
-     		spiderfyOnMaxZoom: true, 
-     		showCoverageOnHover: false,
-     		zoomToBoundsOnClick: true 
-	});map.addLayer(markers);
-	*/
 };
 
 //AJAX GeoJSON Import
